@@ -448,8 +448,6 @@ public class Parser extends ClassVisitor {
         // Todo: address. Line numbers and locations can be computed during code generation and stored in FrameInfo/MethodInfo (Exceptions only needed in try-catch). 
         // Todo: Unwinding the stack should allow finding Java stack frames to scan for GC.
         // Todo: bdwgc GC could be a big improvement in garbage collection and optimizations (Suspend all threads and check registers).
-        // Todo: To replace longjmp/setjmp, a try-catch block surrounding the function body and a jump table should do.
-        // Todo: In order to entirely replace runtime pushing of stack frames, try-finally must be employed for synchronized methods.
 
         private void processExceptionFrames() {
             List<BytecodeMethod.ExceptionFrame> frames = method.getExceptionFrames();

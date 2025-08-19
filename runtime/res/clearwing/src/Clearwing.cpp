@@ -819,7 +819,7 @@ int findExceptionHandler(jcontext ctx, int location, const FrameInfo *info) {
     auto exception = (jobject)ctx->currentException;
     for (int i = 0; i < info->exceptionScopeCount; i++) {
         auto &scope = info->exceptionScopes[i];
-        if (location < scope.startLocation || location > scope.endLocation)
+        if (location < scope.startLocation || location >= scope.endLocation)
             continue;
         if (scope.type && !isInstance(ctx, exception, scope.type))
             continue;

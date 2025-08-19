@@ -25,4 +25,9 @@ public class CustomInstruction extends Instruction {
     public void appendUnoptimized(StringBuilder builder, TranspilerConfig config) {
         builder.append(code);
     }
+
+    @Override
+    public void appendOptimized(StringBuilder builder, TranspilerConfig config) {
+        appendUnoptimized(builder, config);
+    }
 }

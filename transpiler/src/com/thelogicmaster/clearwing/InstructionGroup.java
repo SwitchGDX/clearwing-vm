@@ -239,7 +239,12 @@ public class InstructionGroup extends Instruction {
         
         builder.append("\t}\n");
     }
-    
+
+    @Override
+    public void appendOptimized(StringBuilder builder, TranspilerConfig config) {
+        appendUnoptimized(builder, config);
+    }
+
     @Override
     public void resolveIO(List<StackEntry> stack) {
     }

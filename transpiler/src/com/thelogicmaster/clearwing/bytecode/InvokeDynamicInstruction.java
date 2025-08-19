@@ -172,6 +172,11 @@ public class InvokeDynamicInstruction extends Instruction {
         }
 
         @Override
+        public void appendOptimized(StringBuilder builder, TranspilerConfig config) {
+            appendUnoptimized(builder, config);
+        }
+
+        @Override
         public void resolveIO(List<StackEntry> stack) {
         }
 

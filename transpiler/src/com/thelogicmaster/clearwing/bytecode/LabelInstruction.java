@@ -31,6 +31,11 @@ public class LabelInstruction extends Instruction {
 			builder.append("\tFRAME_LOCATION(").append(location).append(");\n");
 	}
 
+	@Override
+	public void appendOptimized(StringBuilder builder, TranspilerConfig config) {
+		appendUnoptimized(builder, config);
+	}
+
 	public int getLabel () {
 		return label;
 	}

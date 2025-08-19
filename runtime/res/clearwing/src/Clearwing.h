@@ -162,7 +162,7 @@ typedef struct FrameLocation {
 
 typedef struct ExceptionScope {
     int startLocation;
-    int endLocation; // Inclusive
+    int endLocation; // Exclusive
     jclass type; // The exception to filter for, if any
 } ExceptionScope;
 
@@ -987,8 +987,13 @@ public:
         frame->frame = stack;
         frame->info = info;
         frame->location = -1;
-        if (ctx->stackDepth == MAX_STACK_DEPTH - 10) CPP_UNLIKELY
-            throwStackOverflow(ctx);
+        try {
+            if (ctx->stackDepth == MAX_STACK_DEPTH - 10) CPP_UNLIKELY
+                throwStackOverflow(ctx);
+        } catch (...) {
+            ctx->stackDepth -= 1;
+            throw;
+        }
     }
 
     ~FrameGuard() {

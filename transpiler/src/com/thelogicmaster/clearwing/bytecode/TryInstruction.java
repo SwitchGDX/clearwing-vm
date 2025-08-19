@@ -28,6 +28,11 @@ public class TryInstruction extends Instruction implements JumpingInstruction {
     }
 
     @Override
+    public void appendOptimized(StringBuilder builder, TranspilerConfig config) {
+        appendUnoptimized(builder, config);
+    }
+
+    @Override
     public void collectDependencies(Set<String> dependencies) {
         if (frame.getType() != null)
             dependencies.add(Utils.sanitizeName(frame.getType()));
@@ -64,7 +69,12 @@ public class TryInstruction extends Instruction implements JumpingInstruction {
         public void appendUnoptimized(StringBuilder builder, TranspilerConfig config) {
             builder.append("\t// End try-").append(frame.getIndex()).append("\n");
         }
-        
+
+        @Override
+        public void appendOptimized(StringBuilder builder, TranspilerConfig config) {
+            appendUnoptimized(builder, config);
+        }
+
         public TryInstruction getTry() {
             return TryInstruction.this;
         }

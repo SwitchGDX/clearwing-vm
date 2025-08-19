@@ -199,6 +199,7 @@ public class Transpiler {
 							builder.append("_object");
 					}
 					builder.append(") {\n");
+					builder.append("\tauto env = (jni)ctx;\n");
 					for (int i = 0; i < method.getArguments().size(); i++) {
 						Parameter arg = method.getArguments().get(i);
 						JavaMethodParser.ArgumentType type = method.getArgumentTypes().get(i);
